@@ -26,8 +26,8 @@ from unbabel_jose.translations.views import translation_blueprint
 
 app.register_blueprint(translation_blueprint, url_prefix = "/translations")
 
-#uapi = UnbabelApi("fullstack-challenge", "9db71b322d43a6ac0f681784ebdcc6409bb83359", sandbox = in_test_mode)
-#to_translate = 'This is a test'
-#target_language = 'pt'
-#callback_url = 'http://my_awesome_app.com/unbabel_callback/'
-#uapi.post_translations(text=to_translate, target_language=target_language, callback_url=callback_url)
+uapi = UnbabelApi("fullstack-challenge", "9db71b322d43a6ac0f681784ebdcc6409bb83359", sandbox = True)
+to_translate = 'This is a test'
+target_language = 'pt'
+callback_url = 'http://127.0.0.1:5000/unbabel_callback/'
+uapi.post_translations(text=to_translate, target_language=target_language, callback_url=callback_url)

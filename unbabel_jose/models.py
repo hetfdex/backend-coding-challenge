@@ -14,5 +14,5 @@ class Translations(db.Model):
         translated = ""
         self.translation = translated
 
-    def __repr__(self):
-        return f"{self.id} | {self.original} | {self.translation}"
+    #def __repr__(self):
+        #return "{self.id} | {self.original}"
