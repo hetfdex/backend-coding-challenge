@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="jumbotron">
+    <h1>Translate</h1>
+    
+    <form method="POST">
+      {{form.hidden_tag()}}
+      {{form.textToTranslate.label}} {{form.textToTranslate()}}
+      {{form.submit()}}
+    </form>
+  </div>
+{% endblock %}
