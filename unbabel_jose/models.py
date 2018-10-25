@@ -1,18 +1,19 @@
 from unbabel_jose import db
 
-class Translations(db.Model):
+class Translation(db.Model):
     __tablename__ = "translations"
 
     id = db.Column(db.Integer, primary_key=True)
-    original = db.Column(db.String())
-    translation = db.Column(db.String())
+    source_text = db.Column(db.String(512))
+    translated_text = db.Column(db.String(512))
+    uid = db.Column(db.String(64))
+    status = db.Column(db.String(64))
 
-    def __init__(self, original):
-        self.original = original
+    def __init__(self, source_text, translated_text, uid, status):
+        self.source_text = source_text
+        self.translated_text = translated_text
+        self.uid = uid
+        self.status = status
 
-    def translate(self):
-        translated = ""
-        self.translation = translated
-
-    #def __repr__(self):
-        #return "{self.id} | {self.original}"
+    def __repr__(self):
+        return "{} | {} | {} | {}".format(self.uid, self.source_text, self.translated_text, self.status)

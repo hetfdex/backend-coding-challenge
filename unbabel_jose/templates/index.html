@@ -2,6 +2,22 @@
 
 {% block content %}
   <div class="jumbotron">
-    <h1>Welcome to Jose's Unbabel Translation Page</h1>
+    <h1 class="display-4">Jose's Unbabel Translation Page</h1>
+    <hr class="my-4">
+    <form action="" method="post">
+        {{ translation_form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ translation_form.to_translate(class_="form-control", placeholder="Enter text to translate  ") }}
+            <p></p>
+            {{ translation_form.submit(class_="btn btn-primary") }}
+        </div>
+    </form>
+
+    <ul class="list-group">
+      {% for translation in translations %}
+        <li class="list-group-item">{{translation}}</li>
+      {% endfor %}
+    <ul class="list-group">
   </div>
 {% endblock %}
