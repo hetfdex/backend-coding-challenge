@@ -16,4 +16,4 @@ class Translation(db.Model):
         self.status = status
 
     def __repr__(self):
-        return "{} | {} | {} | {}".format(self.uid, self.source_text, self.translated_text, self.status)
+        return "{} | {} | {} | {}".format(self.uid, self.source_text, self.translated_text, self.status).encode("utf-8")
