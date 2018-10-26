@@ -29,6 +29,8 @@ Please fork this repo before you start working on the challenge. We will evaluat
 #### Resources
 * Unbabel's API: http://developers.unbabel.com/
 
+# Instructions
+
 #### Dependencies
 * [PostgreSQL](https://www.postgresql.org/)
 * [Redis](http://redis.io/)
