@@ -7,7 +7,7 @@ def post_translation(to_translate):
     response = uapi.post_translations(text = to_translate, source_language = "en", target_language = "es", callback_url = "localhost")
 
     if response:
-        insert_translation.delay(response.text, response.uid, response.status)
+        insert_translation.delay(response.text, response.uid, "requested")
 
 @celery.task()
 def insert_translation(source_text, uid, status):
@@ -18,7 +18,7 @@ def insert_translation(source_text, uid, status):
 
 @celery.task()
 def update_translations():
-    translations_to_update = Translation.query.filter(or_(Translation.status == "new", Translation.status == "translating")).all()
+    translations_to_update = Translation.query.filter(or_(Translation.status == "requested", Translation.status == "pending")).all()
 
     if translations_to_update:
         for translation_to_update in translations_to_update:
@@ -26,7 +26,9 @@ def update_translations():
 
             if response:
                 if response.status == "completed":
-                    update_translation.delay(response.uid, response.status, response.translation)
+                    update_translation.delay(response.uid, response.status, "translated")
+                elif response.status == "translating":
+                    update_translation.delay(response.uid, "pending")
                 else:
                     update_translation.delay(response.uid, response.status)
 

@@ -19,7 +19,7 @@ Please fork this repo before you start working on the challenge. We will evaluat
 #### Requirements
 * Use Flask web framework
 * Use PostgreSQL
-* Create a scalable application. 
+* Create a scalable application.
 * Only use Unbabel's Translation API on sandbox mode
 * Have tests
 
@@ -29,3 +29,33 @@ Please fork this repo before you start working on the challenge. We will evaluat
 #### Resources
 * Unbabel's API: http://developers.unbabel.com/
 
+#### Dependencies
+* [PostgreSQL](https://www.postgresql.org/);
+* [Redis](http://redis.io/).
+
+#### Setup
+* Start PostgreSQL
+```
+Default database name is "unbabel_translations"
+```
+* Start Redis
+```
+redis-server
+```
+* Database setup
+```
+flask db migrate
+flask db upgrade
+```
+* Start Celery
+```
+celery -A unbabel_jose.tasks worker -B --loglevel=info
+```
+* Run app
+```
+flask run
+```
+* Access @ http://localhost:5000
+
+#### Known Issues
+* List doesn't auto refresh

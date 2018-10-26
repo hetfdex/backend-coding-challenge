@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, redirect, url_for
 from sqlalchemy import func
 from unbabel_jose import app
 from unbabel_jose.forms import TranslationForm
@@ -11,6 +11,8 @@ def index():
 
     if translation_form.validate_on_submit():
         post_translation.delay(translation_form.to_translate.data)
+
+        return redirect(url_for("index"))
 
     translations = get_sorted_translations()
 

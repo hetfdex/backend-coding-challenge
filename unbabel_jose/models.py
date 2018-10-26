@@ -15,5 +15,8 @@ class Translation(db.Model):
         self.uid = uid
         self.status = status
 
+    def __unicode__(self):
+        return u"{} | {} | {} | {}".format(self.uid, self.source_text, self.translated_text, self.status)
+
     def __repr__(self):
-        return "{} | {} | {} | {}".format(self.uid, self.source_text, self.translated_text, self.status).encode("utf-8")
+        return self.__unicode__().encode('utf-8')
